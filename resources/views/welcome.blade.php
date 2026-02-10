@@ -22,9 +22,14 @@
             <p class="text-xl md:text-2xl font-medium mb-8 text-gray-600 dark:text-gray-300">
                 Mohammad Almil Hisullah Gol E
             </p>
-            <a href="{{ url('/dashboard') }}" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:-translate-y-1 transition duration-300 ease-in-out text-lg">
-                Go to Dashboard
-            </a>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="{{ url('/dashboard') }}" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:-translate-y-1 transition duration-300 ease-in-out text-lg">
+                    Go to Dashboard
+                </a>
+                <a href="{{ route('produks.index') }}" class="inline-block bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:-translate-y-1 transition duration-300 ease-in-out text-lg">
+                    Lihat Produk
+                </a>
+            </div>
         </div>
     </body>
 </html>

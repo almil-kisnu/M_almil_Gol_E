@@ -9,3 +9,5 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/produks', [App\Http\Controllers\ProdukController::class, 'index'])->name('produks.index');
