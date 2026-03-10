@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Admin Twins - Pengeluaran">
-    <title>Pengeluaran | Twins Admin</title>
+    <meta name="description" content="Admin Twins - Laporan Harian">
+    <title>Laporan Harian | Twins Admin</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Google Fonts -->
@@ -246,40 +246,6 @@
         }
         .btn-edit-custom:hover { background: rgba(43,156,216,0.20); border-color: var(--blue); }
 
-        /* =================== SUMMARY CARDS =================== */
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-            margin-bottom: 26px;
-        }
-        .summary-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 22px;
-            transition: all var(--transition);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(139,94,60,0.06);
-        }
-        .summary-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-        }
-        .summary-card.orange::before { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
-        .summary-card.red::before    { background: linear-gradient(90deg, var(--red), #e66); }
-        .summary-card.blue::before   { background: linear-gradient(90deg, var(--blue), #5bb8e8); }
-        .summary-card:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(139,94,60,0.12); }
-        .summary-label { font-size: 12px; font-weight: 500; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
-        .summary-value { font-size: 28px; font-weight: 800; margin-top: 10px; }
-        .summary-value.orange { color: var(--orange); }
-        .summary-value.red    { color: var(--red); }
-        .summary-value.blue   { color: var(--blue); }
-        .summary-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
-
         /* =================== CARD =================== */
         .card-custom {
             background: var(--bg-card);
@@ -299,16 +265,16 @@
         /* =================== DATATABLE CUSTOM =================== */
         .datatable-wrap { padding: 20px 22px; }
 
-        #pengeluaranTable_wrapper .dataTables_length label,
-        #pengeluaranTable_wrapper .dataTables_filter label,
-        #pengeluaranTable_wrapper .dataTables_info,
-        #pengeluaranTable_wrapper .dataTables_paginate {
+        #laporanTable_wrapper .dataTables_length label,
+        #laporanTable_wrapper .dataTables_filter label,
+        #laporanTable_wrapper .dataTables_info,
+        #laporanTable_wrapper .dataTables_paginate {
             color: var(--text-secondary);
             font-size: 13px;
             font-family: 'Inter', sans-serif;
         }
-        #pengeluaranTable_wrapper .dataTables_length select,
-        #pengeluaranTable_wrapper .dataTables_filter input {
+        #laporanTable_wrapper .dataTables_length select,
+        #laporanTable_wrapper .dataTables_filter input {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
@@ -318,11 +284,11 @@
             font-size: 13px;
             outline: none;
         }
-        #pengeluaranTable_wrapper .dataTables_filter input:focus {
+        #laporanTable_wrapper .dataTables_filter input:focus {
             border-color: var(--orange);
             box-shadow: 0 0 0 3px rgba(232,148,26,0.12);
         }
-        #pengeluaranTable_wrapper .dataTables_paginate .paginate_button {
+        #laporanTable_wrapper .dataTables_paginate .paginate_button {
             background: var(--bg-secondary) !important;
             border: 1px solid var(--border) !important;
             color: var(--text-secondary) !important;
@@ -331,25 +297,25 @@
             font-size: 12px;
             font-family: 'Inter', sans-serif;
         }
-        #pengeluaranTable_wrapper .dataTables_paginate .paginate_button:hover {
+        #laporanTable_wrapper .dataTables_paginate .paginate_button:hover {
             background: var(--bg-hover) !important;
             border-color: var(--orange) !important;
             color: var(--orange) !important;
         }
-        #pengeluaranTable_wrapper .dataTables_paginate .paginate_button.current {
+        #laporanTable_wrapper .dataTables_paginate .paginate_button.current {
             background: linear-gradient(135deg, var(--orange), var(--yellow)) !important;
             border-color: transparent !important;
             color: #fff !important;
         }
-        #pengeluaranTable_wrapper .dataTables_paginate .paginate_button.disabled,
-        #pengeluaranTable_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+        #laporanTable_wrapper .dataTables_paginate .paginate_button.disabled,
+        #laporanTable_wrapper .dataTables_paginate .paginate_button.disabled:hover {
             color: var(--text-muted) !important;
             background: transparent !important;
             border-color: var(--border) !important;
         }
 
-        table#pengeluaranTable { width: 100% !important; border-collapse: collapse; }
-        table#pengeluaranTable thead th {
+        table#laporanTable { width: 100% !important; border-collapse: collapse; }
+        table#laporanTable thead th {
             padding: 12px 16px;
             font-size: 11px; font-weight: 600;
             text-transform: uppercase; letter-spacing: 0.7px;
@@ -359,22 +325,26 @@
             white-space: nowrap;
             background: var(--bg-card);
         }
-        table#pengeluaranTable tbody td {
+        table#laporanTable tbody td {
             padding: 13px 16px;
             font-size: 13px;
             border-bottom: 1px solid var(--border);
             vertical-align: middle;
             color: var(--text-primary);
         }
-        table#pengeluaranTable tbody tr:last-child td { border-bottom: none; }
-        table#pengeluaranTable tbody tr { transition: background var(--transition); }
-        table#pengeluaranTable tbody tr:hover { background: var(--bg-hover); }
-        table#pengeluaranTable.dataTable { border: none; }
+        table#laporanTable tbody tr:last-child td { border-bottom: none; }
+        table#laporanTable tbody tr { transition: background var(--transition); }
+        table#laporanTable tbody tr:hover { background: var(--bg-hover); }
+        table#laporanTable.dataTable { border: none; }
 
         .no-num { font-weight: 700; color: var(--text-muted); font-size: 12px; }
-        .desc-cell { font-weight: 500; }
-        .total-cell { font-weight: 700; color: var(--orange); }
         .date-cell  { color: var(--text-secondary); font-size: 12px; }
+        .money-cell { font-weight: 700; }
+        .money-cell.orange { color: var(--orange); }
+        .money-cell.blue   { color: var(--blue); }
+        .selisih-positive { font-weight: 700; color: var(--green); }
+        .selisih-negative { font-weight: 700; color: var(--red); }
+        .selisih-zero     { font-weight: 700; color: var(--text-muted); }
         .actions-cell { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
 
         /* =================== MODAL =================== */
@@ -450,6 +420,12 @@
         .form-control-custom:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(232,148,26,0.12); }
         .form-control-custom::placeholder { color: var(--text-muted); }
         .form-control-custom.is-invalid { border-color: var(--red) !important; }
+
+        .form-hint {
+            font-size: 11px; color: var(--text-muted); margin-top: 6px;
+            display: flex; align-items: center; gap: 4px;
+        }
+        .form-hint svg { width: 12px; height: 12px; }
 
         .btn-cancel-custom {
             background: var(--bg-secondary);
@@ -534,10 +510,6 @@
         @media (max-width: 900px) {
             .sidebar { transform: translateX(-100%); }
             .main { margin-left: 0; }
-            .summary-grid { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 600px) {
-            .summary-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -562,11 +534,11 @@
             <i data-feather="list"></i>
             Riwayat Transaksi
         </a>
-        <a class="nav-item active" href="{{ route('admin.pengeluaran.index') }}" id="nav-pengeluaran">
+        <a class="nav-item" href="/admin/pengeluaran" id="nav-pengeluaran">
             <i data-feather="trending-down"></i>
             Pengeluaran
         </a>
-        <a class="nav-item" href="/admin/laporan-harian" id="nav-laporan">
+        <a class="nav-item active" href="{{ route('admin.laporan-harian.index') }}" id="nav-laporan">
             <i data-feather="file-text"></i>
             Laporan Harian
         </a>
@@ -590,7 +562,7 @@
     <!-- Header -->
     <header class="header">
         <div class="header-title">
-            Manajemen <span>Pengeluaran</span>
+            Laporan <span>Harian</span>
         </div>
         <div class="header-actions">
             <button class="icon-btn" title="Refresh" onclick="location.reload()">
@@ -605,79 +577,66 @@
         <!-- Page Header -->
         <div class="page-header animate">
             <div>
-                <h1>Pengeluaran</h1>
-                <p>Kelola data pengeluaran operasional dengan mudah.</p>
+                <h1>Laporan Harian</h1>
+                <p>Rekap perbandingan uang digital dan uang fisik harian.</p>
                 <div class="breadcrumb" style="margin-top:8px;">
                     <i data-feather="home" style="width:12px;height:12px;"></i>
                     <span>/ Admin</span>
-                    <span>/ Pengeluaran</span>
+                    <span>/ Laporan Harian</span>
                 </div>
             </div>
             <button class="btn-primary-custom" id="btn-tambah" onclick="openAddModal()">
                 <i data-feather="plus"></i>
-                Tambah Pengeluaran
+                Tambah Laporan
             </button>
         </div>
 
-        <!-- Summary Cards -->
-        <div class="summary-grid animate delay-1">
-            <div class="summary-card orange">
-                <div class="summary-label">Total Pengeluaran</div>
-                <div class="summary-value orange">
-                    Rp {{ number_format($totalKeseluruhan, 0, ',', '.') }}
-                </div>
-                <div class="summary-sub">Semua data tersimpan</div>
-            </div>
-            <div class="summary-card red">
-                <div class="summary-label">Jumlah Data</div>
-                <div class="summary-value red">{{ $pengeluaran->count() }}</div>
-                <div class="summary-sub">Entri pengeluaran</div>
-            </div>
-            <div class="summary-card blue">
-                <div class="summary-label">Rata-rata per Entri</div>
-                <div class="summary-value blue">
-                    Rp {{ $pengeluaran->count() > 0 ? number_format($totalKeseluruhan / $pengeluaran->count(), 0, ',', '.') : 0 }}
-                </div>
-                <div class="summary-sub">Per transaksi</div>
-            </div>
-        </div>
-
         <!-- Table Card -->
-        <div class="card-custom animate delay-2">
+        <div class="card-custom animate delay-1">
             <div class="card-header-custom">
                 <div>
-                    <div class="card-title-custom">Data Pengeluaran</div>
-                    <div class="card-subtitle-custom">Daftar lengkap semua pengeluaran</div>
+                    <div class="card-title-custom">Data Laporan Harian</div>
+                    <div class="card-subtitle-custom">Uang Digital = SUM(Transaksi) - SUM(Pengeluaran) per hari · Selisih = Uang Fisik - Uang Digital</div>
                 </div>
             </div>
 
             <div class="datatable-wrap">
-                <table id="pengeluaranTable" class="display responsive nowrap" style="width:100%">
+                <table id="laporanTable" class="display responsive nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th width="60">No</th>
-                            <th>Deskripsi</th>
-                            <th>Total</th>
                             <th>Tanggal</th>
+                            <th>Uang Fisik</th>
+                            <th>Uang Digital</th>
+                            <th>Selisih</th>
                             <th width="180">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($pengeluaran as $index => $item)
+                        @forelse($laporanHarian as $index => $item)
                         <tr>
                             <td class="no-num">{{ $index + 1 }}</td>
-                            <td class="desc-cell">{{ $item->deskripsi }}</td>
-                            <td class="total-cell" data-order="{{ $item->total }}">Rp {{ number_format($item->total, 0, ',', '.') }}</td>
                             <td class="date-cell" data-order="{{ \Carbon\Carbon::parse($item->tanggal)->format('Y-m-d') }}">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</td>
+                            <td class="money-cell orange" data-order="{{ $item->uang_fisik }}">Rp {{ number_format($item->uang_fisik, 0, ',', '.') }}</td>
+                            <td class="money-cell blue" data-order="{{ $item->uang_digital }}">Rp {{ number_format($item->uang_digital, 0, ',', '.') }}</td>
+                            <td data-order="{{ $item->selisih }}">
+                                @if($item->selisih > 0)
+                                    <span class="selisih-positive">+Rp {{ number_format($item->selisih, 0, ',', '.') }}</span>
+                                @elseif($item->selisih < 0)
+                                    <span class="selisih-negative">-Rp {{ number_format(abs($item->selisih), 0, ',', '.') }}</span>
+                                @else
+                                    <span class="selisih-zero">Rp 0</span>
+                                @endif
+                            </td>
                             <td>
                                 <div class="actions-cell">
                                     <button class="btn-edit-custom"
-                                        onclick="openEditModal({{ $item->id }}, '{{ addslashes($item->deskripsi) }}', '{{ $item->total }}', '{{ \Carbon\Carbon::parse($item->tanggal)->format('Y-m-d') }}')">
+                                        onclick="openEditModal({{ $item->id }}, '{{ \Carbon\Carbon::parse($item->tanggal)->format('Y-m-d') }}', '{{ $item->uang_fisik }}')">
                                         <i data-feather="edit-2" style="width:13px;height:13px;"></i>
                                         Edit
                                     </button>
                                     <button class="btn-danger-custom"
-                                        onclick="openDeleteModal({{ $item->id }}, '{{ addslashes($item->deskripsi) }}')">
+                                        onclick="openDeleteModal({{ $item->id }}, '{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}')">
                                         <i data-feather="trash-2" style="width:13px;height:13px;"></i>
                                         Hapus
                                     </button>
@@ -706,18 +665,18 @@
         <div class="modal-header-custom">
             <div class="modal-title-custom">
                 <i data-feather="plus-circle"></i>
-                Tambah Pengeluaran
+                Tambah Laporan Harian
             </div>
             <button class="modal-close-btn" onclick="closeModal('modalTambah')">
                 <i data-feather="x"></i>
             </button>
         </div>
-        <form action="{{ route('admin.pengeluaran.store') }}" method="POST" id="formTambah" novalidate>
+        <form action="{{ route('admin.laporan-harian.store') }}" method="POST" id="formTambah" novalidate>
             @csrf
             <div class="modal-body-custom">
 
                 @if ($errors->any() && old('_form_type') === 'tambah')
-                <div class="alert alert-danger alert-danger-dark alert-dismissible fade show" role="alert" id="validasiErrorTambah">
+                <div class="alert alert-danger alert-danger-dark alert-dismissible fade show" role="alert">
                     <strong><i data-feather="alert-triangle" style="width:14px;height:14px;display:inline;margin-right:6px;"></i>Terdapat kesalahan input:</strong>
                     <ul class="mt-1">
                         @foreach ($errors->all() as $error)
@@ -731,27 +690,23 @@
                 <input type="hidden" name="_form_type" value="tambah">
 
                 <div class="form-group-custom">
-                    <label class="form-label-custom" for="add-deskripsi">Deskripsi *</label>
-                    <input type="text"
-                        class="form-control-custom {{ $errors->has('deskripsi') && old('_form_type') === 'tambah' ? 'is-invalid' : '' }}"
-                        id="add-deskripsi" name="deskripsi"
-                        placeholder="Contoh: Pembelian oli mesin, Bayar listrik..."
-                        value="{{ old('_form_type') === 'tambah' ? old('deskripsi') : '' }}">
-                </div>
-                <div class="form-group-custom">
-                    <label class="form-label-custom" for="add-total">Total (Rp) *</label>
-                    <input type="number"
-                        class="form-control-custom {{ $errors->has('total') && old('_form_type') === 'tambah' ? 'is-invalid' : '' }}"
-                        id="add-total" name="total"
-                        placeholder="0" min="0" step="1000"
-                        value="{{ old('_form_type') === 'tambah' ? old('total') : '' }}">
-                </div>
-                <div class="form-group-custom">
                     <label class="form-label-custom" for="add-tanggal">Tanggal *</label>
                     <input type="date"
                         class="form-control-custom {{ $errors->has('tanggal') && old('_form_type') === 'tambah' ? 'is-invalid' : '' }}"
                         id="add-tanggal" name="tanggal"
                         value="{{ old('_form_type') === 'tambah' ? old('tanggal') : '' }}">
+                </div>
+                <div class="form-group-custom">
+                    <label class="form-label-custom" for="add-uang-fisik">Uang Fisik (Rp) *</label>
+                    <input type="number"
+                        class="form-control-custom {{ $errors->has('uang_fisik') && old('_form_type') === 'tambah' ? 'is-invalid' : '' }}"
+                        id="add-uang-fisik" name="uang_fisik"
+                        placeholder="Jumlah uang tunai di kasir" min="0" step="1000"
+                        value="{{ old('_form_type') === 'tambah' ? old('uang_fisik') : '' }}">
+                    <div class="form-hint">
+                        <i data-feather="info"></i>
+                        Uang Digital & Selisih akan dihitung otomatis dari data transaksi & pengeluaran
+                    </div>
                 </div>
             </div>
             <div class="modal-footer-custom">
@@ -771,7 +726,7 @@
         <div class="modal-header-custom">
             <div class="modal-title-custom">
                 <i data-feather="edit-2"></i>
-                Edit Pengeluaran
+                Edit Laporan Harian
             </div>
             <button class="modal-close-btn" onclick="closeModal('modalEdit')">
                 <i data-feather="x"></i>
@@ -798,27 +753,23 @@
                 <input type="hidden" id="edit-id" name="_edit_id" value="">
 
                 <div class="form-group-custom">
-                    <label class="form-label-custom" for="edit-deskripsi">Deskripsi *</label>
-                    <input type="text"
-                        class="form-control-custom {{ $errors->has('deskripsi') && old('_form_type') === 'edit' ? 'is-invalid' : '' }}"
-                        id="edit-deskripsi" name="deskripsi"
-                        placeholder="Deskripsi pengeluaran..."
-                        value="{{ old('_form_type') === 'edit' ? old('deskripsi') : '' }}">
-                </div>
-                <div class="form-group-custom">
-                    <label class="form-label-custom" for="edit-total">Total (Rp) *</label>
-                    <input type="number"
-                        class="form-control-custom {{ $errors->has('total') && old('_form_type') === 'edit' ? 'is-invalid' : '' }}"
-                        id="edit-total" name="total"
-                        placeholder="0" min="0" step="1000"
-                        value="{{ old('_form_type') === 'edit' ? old('total') : '' }}">
-                </div>
-                <div class="form-group-custom">
                     <label class="form-label-custom" for="edit-tanggal">Tanggal *</label>
                     <input type="date"
                         class="form-control-custom {{ $errors->has('tanggal') && old('_form_type') === 'edit' ? 'is-invalid' : '' }}"
                         id="edit-tanggal" name="tanggal"
                         value="{{ old('_form_type') === 'edit' ? old('tanggal') : '' }}">
+                </div>
+                <div class="form-group-custom">
+                    <label class="form-label-custom" for="edit-uang-fisik">Uang Fisik (Rp) *</label>
+                    <input type="number"
+                        class="form-control-custom {{ $errors->has('uang_fisik') && old('_form_type') === 'edit' ? 'is-invalid' : '' }}"
+                        id="edit-uang-fisik" name="uang_fisik"
+                        placeholder="Jumlah uang tunai" min="0" step="1000"
+                        value="{{ old('_form_type') === 'edit' ? old('uang_fisik') : '' }}">
+                    <div class="form-hint">
+                        <i data-feather="info"></i>
+                        Uang Digital & Selisih akan dihitung ulang otomatis
+                    </div>
                 </div>
             </div>
             <div class="modal-footer-custom">
@@ -841,7 +792,7 @@
             </div>
             <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 8px;">Konfirmasi Hapus</h3>
             <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
-                Yakin ingin menghapus pengeluaran<br>
+                Yakin ingin menghapus laporan tanggal<br>
                 "<strong id="deleteDesc" style="color: var(--text-primary);"></strong>"?<br>
                 <span style="color: var(--red); font-size: 12px;">Tindakan ini tidak dapat dibatalkan.</span>
             </p>
@@ -887,15 +838,15 @@
     feather.replace();
 
     $(document).ready(function () {
-        $('#pengeluaranTable').DataTable({
+        $('#laporanTable').DataTable({
             responsive: true,
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.13.8/i18n/id.json'
             },
-            order: [[3, 'desc']],
+            order: [[1, 'desc']],
             columnDefs: [
-                { orderable: false, targets: [0, 4] },
-                { searchable: false, targets: [0, 4] }
+                { orderable: false, targets: [0, 5] },
+                { searchable: false, targets: [0, 5] }
             ],
             drawCallback: function () {
                 this.api().column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
@@ -926,7 +877,7 @@
                 const editId = '{{ old('_edit_id') }}';
                 if (editId) {
                     const form = document.getElementById('formEdit');
-                    form.action = '/admin/pengeluaran/' + editId;
+                    form.action = '/admin/laporan-harian/' + editId;
                     document.getElementById('edit-id').value = editId;
                 }
             })();
@@ -941,20 +892,19 @@
         openModal('modalTambah');
     }
 
-    function openEditModal(id, deskripsi, total, tanggal) {
+    function openEditModal(id, tanggal, uangFisik) {
         const form = document.getElementById('formEdit');
-        form.action = `/admin/pengeluaran/${id}`;
+        form.action = `/admin/laporan-harian/${id}`;
         document.getElementById('edit-id').value = id;
-        document.getElementById('edit-deskripsi').value = deskripsi;
-        document.getElementById('edit-total').value = total;
         document.getElementById('edit-tanggal').value = tanggal;
+        document.getElementById('edit-uang-fisik').value = uangFisik;
         document.querySelectorAll('#formEdit .form-control-custom').forEach(el => el.classList.remove('is-invalid'));
         openModal('modalEdit');
     }
 
-    function openDeleteModal(id, deskripsi) {
-        document.getElementById('formHapus').action = `/admin/pengeluaran/${id}`;
-        document.getElementById('deleteDesc').textContent = deskripsi;
+    function openDeleteModal(id, label) {
+        document.getElementById('formHapus').action = `/admin/laporan-harian/${id}`;
+        document.getElementById('deleteDesc').textContent = label;
         openModal('modalHapus');
     }
 

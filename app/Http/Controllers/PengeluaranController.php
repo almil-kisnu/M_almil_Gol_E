@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pengeluaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PengeluaranController extends Controller
 {
 
     public function index()
     {
-        $pengeluaran     = Pengeluaran::orderBy('tanggal', 'desc')->get();
-        $totalKeseluruhan = $pengeluaran->sum('total');
+        $pengeluaran     = DB::table('pengeluaran')
+            ->select('id', 'deskripsi', 'total', 'tanggal')
+            ->orderBy('tanggal', 'desc')
+            ->get();
+        $totalKeseluruhan = DB::table('pengeluaran')->sum('total');
 
         return view('admin.pengeluaran', compact('pengeluaran', 'totalKeseluruhan'));
     }
 
+    //insert data pengeluaran
     public function store(Request $request)
     {
         $request->validate([
@@ -32,19 +36,29 @@ class PengeluaranController extends Controller
             'tanggal.date'       => 'Format tanggal tidak valid.',
         ]);
 
-        Pengeluaran::create($request->only('deskripsi', 'total', 'tanggal'));
+        DB::table('pengeluaran')->insert([
+            'deskripsi' => $request->deskripsi,
+            'total'     => $request->total,
+            'tanggal'   => $request->tanggal,
+        ]);
 
         return redirect()->route('admin.pengeluaran.index')
             ->with('success', 'Data pengeluaran berhasil ditambahkan.');
     }
 
 
-    public function show(Pengeluaran $pengeluaran)
+    //menampilkan data pengeluaran berdasarkan id
+    public function show($id)
     {
+        $pengeluaran = DB::table('pengeluaran')->where('id', $id)->first();
+        if (!$pengeluaran) {
+            return response()->json(['message' => 'Data pengeluaran tidak ditemukan.'], 404);
+        }
         return response()->json($pengeluaran);
     }
 
-    public function update(Request $request, Pengeluaran $pengeluaran)
+    //update data pengeluaran berdasarkan id
+    public function update(Request $request, $id)
     {
         $request->validate([
             'deskripsi' => 'required|string|max:255',
@@ -60,16 +74,21 @@ class PengeluaranController extends Controller
             'tanggal.date'       => 'Format tanggal tidak valid.',
         ]);
 
-        $pengeluaran->update($request->only('deskripsi', 'total', 'tanggal'));
+        DB::table('pengeluaran')->where('id', $id)->update([
+            'deskripsi' => $request->deskripsi,
+            'total'     => $request->total,
+            'tanggal'   => $request->tanggal,
+        ]);
 
         return redirect()->route('admin.pengeluaran.index')
             ->with('success', 'Data pengeluaran berhasil diperbarui.');
     }
 
 
-    public function destroy(Pengeluaran $pengeluaran)
+    //delete data pengeluaran berdasarkan id
+    public function destroy($id)
     {
-        $pengeluaran->delete();
+        DB::table('pengeluaran')->where('id', $id)->delete();
 
         return redirect()->route('admin.pengeluaran.index')
             ->with('success', 'Data pengeluaran berhasil dihapus.');
