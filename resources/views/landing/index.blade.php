@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.landing')
 
 @section('title', 'Joni Motor - Service & Sparepart Mobil Terpercaya')
 
@@ -82,6 +82,16 @@ a{text-decoration:none;color:inherit;}
     transition:all var(--transition);
 }
 .btn-nav:hover{transform:translateY(-2px);box-shadow:0 0 25px var(--accent-glow);}
+.btn-nav-outline{
+    background:transparent;color:var(--accent-light)!important;
+    border:1.5px solid var(--accent);
+    padding:6px 20px!important;border-radius:8px;font-weight:700!important;
+    transition:all var(--transition);display:inline-flex;align-items:center;
+}
+.btn-nav-outline:hover{
+    background:var(--accent-faint);color:var(--text-primary)!important;
+    transform:translateY(-2px);
+}
 .navbar-toggler{border:1px solid var(--border-hover)!important;color:var(--text-primary)!important;}
 .navbar-toggler-icon{filter:invert(1);}
 
@@ -451,9 +461,20 @@ a{text-decoration:none;color:inherit;}
                 <a href="#testimonials" class="nav-link-jm">Testimoni</a>
                 <a href="#contact" class="nav-link-jm">Kontak</a>
             </div>
-            <a href="#contact" class="btn-nav nav-link-jm d-none d-lg-flex align-items-center gap-2">
-                <i class="bi bi-calendar2-check"></i> Booking Service
-            </a>
+            <div class="d-none d-lg-flex align-items-center gap-2">
+                @auth
+                    <a href="{{ route('admin.dashboard') }}" class="btn-nav text-decoration-none">
+                        <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                    </a>
+                @else
+                    <a href="{{ Route::has('login') ? route('login') : url('login') }}" class="btn-nav-outline text-decoration-none">
+                        <i class="bi bi-box-arrow-in-right me-2"></i> Login
+                    </a>
+                    <a href="{{ Route::has('register') ? route('register') : url('register') }}" class="btn-nav text-decoration-none">
+                        <i class="bi bi-person-plus me-2"></i> Register
+                    </a>
+                @endauth
+            </div>
         </div>
     </div>
 </nav>
@@ -467,6 +488,12 @@ a{text-decoration:none;color:inherit;}
     <div class="hero-orb hero-orb-1"></div>
     <div class="hero-orb hero-orb-2"></div>
     <div class="container position-relative">
+        @if (session('status'))
+            <div class="alert alert-success alert-dismissible fade show text-center" role="alert" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; border-radius: 12px; margin-top: -30px; margin-bottom: 20px;">
+                <i class="bi bi-check-circle-fill me-2"></i> {{ session('status') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="filter: invert(1);"></button>
+            </div>
+        @endif
         <div class="row align-items-center g-5">
             <div class="col-lg-6" data-aos="fade-right">
                 <div class="hero-badge">

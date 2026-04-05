@@ -390,14 +390,17 @@
     </nav>
 
     <div class="sidebar-footer">
-        <div class="admin-profile">
-            <div class="admin-avatar">T</div>
-            <div class="admin-info">
-                <div class="admin-name">Twins Admin</div>
-                <div class="admin-role">Administrator</div>
-            </div>
-            <i data-feather="log-out" style="width:15px;height:15px;color:rgba(255,255,255,0.3);flex-shrink:0;"></i>
-        </div>
+        <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
+            @csrf
+            <button type="submit" class="admin-profile" style="width: 100%; text-align: left; background: transparent; border: none; cursor: pointer;">
+                <div class="admin-avatar" style="text-transform: uppercase;">{{ substr(Auth::user()->name ?? 'T', 0, 1) }}</div>
+                <div class="admin-info">
+                    <div class="admin-name">{{ Auth::user()->name ?? 'Twins Admin' }}</div>
+                    <div class="admin-role">Administrator</div>
+                </div>
+                <i data-feather="log-out" style="width:15px;height:15px;color:rgba(255,255,255,0.3);flex-shrink:0;"></i>
+            </button>
+        </form>
     </div>
 </aside>
 

@@ -14,50 +14,50 @@
         <script src="https://cdn.tailwindcss.com"></script>
     @endif
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen flex flex-col font-sans antialiased">
-    <nav class="bg-white dark:bg-gray-800 shadow p-4 border-b border-gray-200 dark:border-gray-700">
+<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col font-sans antialiased">
+    <nav class="bg-white shadow p-4 border-b border-gray-200">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold text-indigo-600 dark:text-indigo-400">Daftar Produk</h1>
-            <a href="{{ url('/') }}" class="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition duration-150 ease-in-out">
+            <h1 class="text-xl font-bold text-indigo-600">Daftar Produk</h1>
+            <a href="{{ url('/') }}" class="text-sm text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out">
                 &larr; Kembali ke Beranda
             </a>
         </div>
     </nav>
     <main class="flex-grow p-6">
         <div class="max-w-7xl mx-auto">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
                     <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         No
                                     </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Nama Produk
                                     </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Harga
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                            <tbody class="bg-white divide-y divide-gray-200">
                                 @forelse ($produks as $index => $produk)
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-750 transition duration-150 ease-in-out">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                    <tr class="hover:bg-gray-50 transition duration-150 ease-in-out">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $index + 1 }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             {{ $produk->nama_barang }}
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             Rp {{ number_format($produk->harga, 0, ',', '.') }}
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="3" class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500 dark:text-gray-400">
+                                        <td colspan="3" class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500">
                                             Tidak ada data produk.
                                         </td>
                                     </tr>
@@ -69,7 +69,7 @@
             </div>
         </div>
     </main>
-    <footer class="bg-white dark:bg-gray-800 p-6 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-500">
+    <footer class="bg-white p-6 border-t border-gray-200 text-center text-sm text-gray-500">
         &copy; {{ date('Y') }} Mohammad Almil Hisullah Gol E. All rights reserved.
     </footer>
 </body>
